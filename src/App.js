@@ -1,84 +1,72 @@
 import React from "react";
-import logo from "./logo.svg";
-import "./App.css";
 
 import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  useRouteMatch,
+  GeistProvider,
+  CssBaseline,
+  Button,
+  Page,
+  Text,
+  Card,
+  Spacer,
+  Tooltip,
   Link,
-} from "react-router-dom";
+} from "@geist-ui/react";
+
+import { Github, ExternalLink, Twitter } from "@geist-ui/react-icons";
+
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 function App() {
   return (
-    <Router>
-      <Switch>
-        <Route path="/test">
-          <Content />
-        </Route>
-        <Route path="/">
-          <Content />
-        </Route>
-      </Switch>
-    </Router>
+    <GeistProvider theme={{ type: "dark" }}>
+      <CssBaseline />
+      <Router>
+        <Switch>
+          <Route path="/">
+            <Landing />
+          </Route>
+        </Switch>
+      </Router>
+    </GeistProvider>
   );
 }
 
-function Content() {
-  let match = useRouteMatch();
-  console.log(match);
+function Landing() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          <Link to={match.path === "/test" ? "/" : "/test"}>
-            Edit <code>src/App.js</code> and save to reload.
-          </Link>
-        </p>
-        <p>
-          {match.url} | {match.path} | {match.name}
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Page dotBackdrop size="large">
+      <Page.Content>
+        <Card shadow>
+          <Text h1>Never be late to Zoom school again.</Text>
+
+          <Text h4>
+            View your class schedule and keep track of those pesky Zoom links in
+            an elegant dashboard, with reminders to log on to your next class.
+          </Text>
+
+          <Text h4>Presenting OnTime by JasonAA.</Text>
+          <Tooltip
+            text={
+              "Hopefully before this hackathon ends, but we'll see about that ;)"
+            }
+          >
+            <Button shadow>Coming soon to a screen near you!</Button>
+          </Tooltip>
+          <Card.Footer>
+            <Link href="https://jasonaa.me/gh">
+              <Github />
+            </Link>
+            <Spacer x={1} inline />
+            <Link href="https://jasonaa.me/twitter">
+              <Twitter />
+            </Link>
+            <Spacer x={1} inline />
+            <Link href="https://jasonaa.me">
+              <ExternalLink />
+            </Link>
+          </Card.Footer>
+        </Card>
+      </Page.Content>
+    </Page>
   );
 }
-
-// function Content2() {
-//   let match = useRouteMatch();
-//   console.log(match);
-//   return (
-//     <div className="App">
-//       <header className="App-header">
-//         <img src={logo} className="App-logo" alt="logo" />
-//         <p>
-//           <Link to="/">
-//             Edit <code>src/ANOOOOOOOOOpp.js</code> and save to reload.
-//           </Link>
-//         </p>
-//         <p>
-//           {match.url} yeet {match.path} yeet {match.name}
-//         </p>
-//         <a
-//           className="App-link"
-//           href="https://reactjs.org"
-//           target="_blank"
-//           rel="noopener noreferrer"
-//         >
-//           Learn React
-//         </a>
-//       </header>
-//     </div>
-//   );
-// }
-
 export default App;
