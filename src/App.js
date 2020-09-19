@@ -10,7 +10,6 @@ import {
   Text,
   Card,
   Spacer,
-  Tooltip,
   Link,
 } from "@geist-ui/react";
 
@@ -27,9 +26,22 @@ function App() {
           <Route path="/">
             <Landing />
           </Route>
+          <Route path="/signin">
+            <Login />
+          </Route>
         </Switch>
       </Router>
     </GeistProvider>
+  );
+}
+
+function Login() {
+  return (
+    <Page dotBackdrop size="large">
+      <Page.Content>
+        <Text h1>Sign in / register here.</Text>
+      </Page.Content>
+    </Page>
   );
 }
 
@@ -46,13 +58,10 @@ function Landing() {
           </Text>
 
           <Text h4>Presenting OnTime by JasonAA.</Text>
-          <Tooltip
-            text={
-              "Hopefully before this hackathon ends, but we'll see about that ;)"
-            }
-          >
-            <Button shadow>Coming soon to a screen near you!</Button>
-          </Tooltip>
+
+          <Link href="/signin">
+            <Button shadow>Log In</Button>
+          </Link>
           <Card.Footer>
             <Link href="https://jasonaa.me/gh">
               <Github />
