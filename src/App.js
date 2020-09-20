@@ -43,6 +43,8 @@ const uiConfig = {
   ],
 };
 
+var db = firebase.firestore();
+
 function App() {
   return (
     <GeistProvider theme={{ type: "dark" }}>
@@ -89,7 +91,7 @@ function Login() {
       <Page.Content>
         <Text h1>You're in.</Text>
         <Card shadow>
-          <Text h3>{firebase.auth().currentUser.displayName}, {firebase.auth().currentUser.email}, {firebase.auth().currentUser.uid}, {firebase.auth().currentUser.providerId}</Text>
+          <Text h3>{firebase.auth().currentUser.displayName}, {firebase.auth().currentUser.email}, {firebase.auth().currentUser.uid}</Text>
             <Button icon={<Power/>} type="error" ghost onClick={() => {firebase.auth().signOut(); unregisterAuthObserver()}}>Sign out</Button>
         </Card>
       </Page.Content>
