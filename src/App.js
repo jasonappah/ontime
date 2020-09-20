@@ -14,7 +14,7 @@ import {
 import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
 import firebase from "firebase";
 
-import { Github, ExternalLink, Twitter } from "@geist-ui/react-icons";
+import { Github, ExternalLink, Twitter, Power, ArrowLeftCircle } from "@geist-ui/react-icons";
 
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
@@ -39,7 +39,6 @@ const uiConfig = {
   },
   signInOptions: [
     firebase.auth.GoogleAuthProvider.PROVIDER_ID,
-    firebase.auth.PhoneAuthProvider.PROVIDER_ID,
     firebase.auth.EmailAuthProvider.PROVIDER_ID
   ],
 };
@@ -79,6 +78,7 @@ function Login() {
             uiConfig={uiConfig}
             firebaseAuth={firebase.auth()}
           />
+          <Link href="/"><Button icon={<ArrowLeftCircle/>} ghost>Back</Button></Link>
         </Card>
       </Page.Content>
     </Page>
@@ -90,7 +90,7 @@ function Login() {
         <Text h1>You're in.</Text>
         <Card shadow>
           <Text h3>{firebase.auth().currentUser.displayName}, {firebase.auth().currentUser.email}, {firebase.auth().currentUser.uid}, {firebase.auth().currentUser.providerId}</Text>
-            <Link onClick={() => {firebase.auth().signOut(); unregisterAuthObserver()}}>Sign-out</Link>
+            <Button icon={<Power/>} type="error" ghost onClick={() => {firebase.auth().signOut(); unregisterAuthObserver()}}>Sign out</Button>
         </Card>
       </Page.Content>
     </Page>
