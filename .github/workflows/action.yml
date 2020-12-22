@@ -12,6 +12,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - run: firebase deploy --only firestore:rules
+        name: Check out repo
+      - run: yarn
+        name: Install dependencies
+      - run: yarn run firebase deploy --only firestore:rules
+        name: Deploy Firestore Security Rules
         env: 
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}

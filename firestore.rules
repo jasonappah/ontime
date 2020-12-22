@@ -1,3 +1,5 @@
+// adding a comment to make sure this gets deployed by our github action
+
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
