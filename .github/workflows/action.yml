@@ -4,18 +4,20 @@ on:
   push:
     branches:
       - main
+      - dev
+      # dev is only here temporarily. this needs to go when we release v1
     paths:
       - 'firestore.rules'
 
 jobs:
-  deploy_firestore_rules:
+  deploy:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
         name: Check out repo
       - run: yarn
         name: Install dependencies
-      - run: yarn run firebase deploy --only firestore:rules
+      - run: yarn run firebase deploy --only firestore:rules --project ${{ secrets.FIREBASE_PROJECT_ID }}
         name: Deploy Firestore Security Rules
         env: 
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
