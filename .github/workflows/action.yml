@@ -1,14 +1,14 @@
 name: Deploy Firestore Rules
 
 on:
-  - push:
-      branches:
-        - main
-        - dev
+  push:
+     branches:
+     - main
+     - dev
         # dev is only here temporarily. this needs to go when we release v1
       paths:
         - 'firestore.rules'
-  - workflow_dispatch
+  workflow_dispatch
 
 jobs:
   deploy:
