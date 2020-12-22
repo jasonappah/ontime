@@ -1,0 +1,38 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    match /{document=**} {
+    	// allow users to read documents only if they are marked as public.
+    	// allow users to create documents only if they are logged in.
+      // allow users to read, create or update documents if their user id matches the one on the document
+       
+    function loggedIn() {
+    	return request.auth != null
+    }
+    
+    function isPublic() {
+    	return resource.data.public
+    }
+    
+    function docBelongsToUser() {
+    	return request.auth.uid == resource.data.userId
+    }
+    
+    function canRead() {
+    	return isPublic() || canModify()
+    }
+    
+    function canModify() {
+  		return loggedIn() && docBelongsToUser()
+    }
+       
+      allow read: if canRead();
+      
+      allow create, delete: if loggedIn() && docBelongsToUser();
+      
+      // TODO: Eventually you will need to add some other data validation
+      allow write: if docBelongsToUser()
+    }
+  }
+}
