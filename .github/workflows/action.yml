@@ -5,10 +5,9 @@ on:
      branches:
      - main
      - dev
-        # dev is only here temporarily. this needs to go when we release v1
-      paths:
-        - 'firestore.rules'
-  workflow_dispatch
+     paths:
+     - 'firestore.rules'
+  workflow_dispatch:
 
 jobs:
   deploy:
