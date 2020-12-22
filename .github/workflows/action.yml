@@ -5,13 +5,9 @@ on:
      branches:
      - main
      - dev
-<<<<<<< HEAD
-=======
-        # dev is only here temporarily. this needs to go when we release v1
->>>>>>> 99411d4... fix: correct formatting of action triggers
-      paths:
-        - 'firestore.rules'
-  workflow_dispatch
+     paths:
+     - 'firestore.rules'
+  workflow_dispatch:
 
 jobs:
   deploy:
